@@ -13,8 +13,8 @@ public class WorkoutController {
     @Autowired
     private WorkoutRepository workoutRepository;
 
-//    @Autowired
-//    private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 //    @Autowired
 //    private CorsConfig corsConfig;
@@ -26,13 +26,13 @@ public class WorkoutController {
     }
 
     // Add Item Route POST /:id
-    @PostMapping("/posts")
+    @PostMapping("/workouts")
     public Workout newString(@RequestBody Workout workout, HttpSession session) throws Exception{
-//        User user = userRepository.findByUsername(session.getAttribute("username").toString());
-//        if(user == null){
-//            throw new Exception("you must be logged in");
-//        }
-//        post.setUser(user);
+        User user = userRepository.findByUsername(session.getAttribute("username").toString());
+        if(user == null){
+            throw new Exception("you must be logged in");
+        }
+        workout.setUser(user);
         Workout newWorkout = workoutRepository.save(workout);
         return newWorkout;
 
