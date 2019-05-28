@@ -5,6 +5,7 @@ inHiit/WorkoutRepository.class
 inHiit/UserService.class
 inHiit/UserController.class
 inHiit/UserRepository.class
+inHiit/CorsConfig.class
 inHiit/Application.class
 inHiit/Workout.class
 inHiit/WorkoutController.class

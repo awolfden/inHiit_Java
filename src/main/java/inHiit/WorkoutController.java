@@ -16,8 +16,11 @@ public class WorkoutController {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private CorsConfig corsConfig;
+    @Autowired
+    private CorsConfig corsConfig;
+
+    @Autowired
+    private SecurityConfiguration securityConfiguration;
 
     // Get All
     @GetMapping("/workouts")

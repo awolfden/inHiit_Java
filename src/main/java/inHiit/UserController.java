@@ -20,6 +20,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CorsConfig corsConfig;
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/users")
@@ -33,6 +36,7 @@ public class UserController {
         User newUser = userService.saveUser(user);
         if(newUser != null){
             session.setAttribute("username", newUser.getUsername());
+            session.setAttribute("msg", "login successful");
         }
         return newUser;
     }
@@ -48,6 +52,8 @@ public class UserController {
         boolean valid = bCryptPasswordEncoder.matches(login.getPassword(), user.getPassword());
         if(valid){
             session.setAttribute("username", user.getUsername());
+            session.setAttribute("msg", "login successful");
+            System.out.println(session);
             return user;
         }else{
             throw new IOException("Invalid Credentials");

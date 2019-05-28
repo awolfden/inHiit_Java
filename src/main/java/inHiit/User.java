@@ -9,6 +9,10 @@ import java.util.Set;
 //^this is going to be a table in our database
 public class User {
 
+    private String username;
+
+    private String password;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,10 +20,6 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     @JsonIgnore
     private Set<Workout> workouts;
-
-    private String username;
-
-    private String password;
 
     public String getUsername() {
         return username;
