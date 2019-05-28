@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="244f430f-7027-492c-bd96-80ee3d2fd554" name="Default Changelist" comment="" />
+    <list default="true" id="244f430f-7027-492c-bd96-80ee3d2fd554" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/inHiit/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inHiit/CorsConfig.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/inHiit/CorsConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="46" />
+            <state relative-caret-position="180">
+              <caret line="12" column="56" lean-forward="true" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,8 +94,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="309" />
-    <option name="y" value="44" />
+    <option name="x" value="230" />
+    <option name="y" value="52" />
     <option name="width" value="1106" />
     <option name="height" value="792" />
   </component>
@@ -175,7 +177,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="309" y="44" width="1106" height="792" extended-state="0" />
+    <frame x="230" y="52" width="1106" height="792" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -345,8 +347,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/inHiit/CorsConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="180">
+          <caret line="12" column="56" lean-forward="true" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
