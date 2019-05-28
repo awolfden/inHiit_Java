@@ -1,5 +1,9 @@
 inHiit/User.class
+inHiit/WebMvcConfig.class
+inHiit/SecurityConfiguration.class
 inHiit/WorkoutRepository.class
+inHiit/UserService.class
+inHiit/UserController.class
 inHiit/UserRepository.class
 inHiit/Application.class
 inHiit/Workout.class

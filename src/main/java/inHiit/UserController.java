@@ -27,10 +27,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    //    @PostMapping("/users")
-//    public User create(@RequestBody User user){
-//        return userService.saveUser(user);
-//    }
+
     @PostMapping("/users")
     public User createUser(@RequestBody User user, HttpSession session){
         User newUser = userService.saveUser(user);
@@ -39,18 +36,8 @@ public class UserController {
         }
         return newUser;
     }
-//    @GetMapping("/users/{id}")
-//    public User show(@PathVariable("id") Long id) throws Exception{
-//        Optional<User> response = userRepository.findById(id);
-//        if(response.isPresent()){
-//            return response.get();
-//        } else {
-//            throw new Exception("User doesn't exist");
-//        }
-//    }
 
 
-    // as another route listed after class variables
     @PostMapping("/login")
     public User login(@RequestBody User login, HttpSession session) throws IOException {
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
