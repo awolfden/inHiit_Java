@@ -116,10 +116,10 @@ class App extends Component {
 
     createUser = async (formData, e) => {
       e.preventDefault();
-
+      console.log(formData);
 
       try {
-          const createdUser = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/users/register`, {
+          const createdUser = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/users`, {
               method: 'POST',
               credentials: 'include',
               body: JSON.stringify(formData),
@@ -127,14 +127,16 @@ class App extends Component {
                   'Content-Type': 'application/json'
               }
           });
-
+          
           const parsedResponse = await createdUser.json();
-            if(parsedResponse.data !== 'User name not available'){
+          console.log(parsedResponse);
+            if(parsedResponse !== 'User name not available'){
               this.setState({
                 isLogged: true,
-                loggedUser: parsedResponse.data.user,
-                loggedUserId: parsedResponse.data.usersDbId,
+                loggedUser: parsedResponse.username,
+                loggedUserId: parsedResponse.id,
             })
+            
           } else {
             this.setState({
               logFailMsg: 'User name not available'
@@ -148,8 +150,11 @@ class App extends Component {
 
   loginUser = async (formData, e) => {
       e.preventDefault();
+
+      console.log(formData);
+
       try {
-        const loginUser = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/users/login`, {
+        const loginUser = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/login`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(formData),
@@ -158,11 +163,13 @@ class App extends Component {
         }
         })
         const parsedResponse = await loginUser.json();
-        if(parsedResponse.data.msg === 'login successful'){
+        console.log(parsedResponse);
+        
+        if(parsedResponse.id){
           this.setState({
             isLogged: true,
-            loggedUser: parsedResponse.data.user,
-            loggedUserId: parsedResponse.data.usersDbId,
+            loggedUser: parsedResponse.username,
+            loggedUserId: parsedResponse.id,
             logFailMsg: '',
           })
           this.getWorkouts();
@@ -209,16 +216,17 @@ class App extends Component {
 
         const parsedWorkouts = await response.json();        
         if(this.state.isLogged){
-            const workoutArr = parsedWorkouts.data;
-            const userWorkouts = workoutArr.filter((workout) => workout.user.toString() === this.state.loggedUserId.toString());
+            const workoutArr = parsedWorkouts;
+            console.log(parsedWorkouts);
+            const userWorkouts = workoutArr.filter((workout) => workout.user.id.toString() === this.state.loggedUserId.toString());
             this.setState({
                 workouts: userWorkouts
             })
 
         } else {
-          const adminUserId = '5cdef3b17742540017fb92dd';
-          const workoutArr = parsedWorkouts.data;
-          const userWorkouts = workoutArr.filter((workout) => workout.user.toString() === adminUserId.toString());
+          const adminUserId = '2';
+          const workoutArr = parsedWorkouts;
+          const userWorkouts = workoutArr.filter((workout) => workout.user.id.toString() === adminUserId.toString());
           
             this.setState({
                 workouts: userWorkouts
@@ -244,7 +252,7 @@ class App extends Component {
         });
 
         const parsedResponse = await createdWorkout.json();
-        this.setState({workouts: [...this.state.workouts, parsedResponse.data]})
+        this.setState({workouts: [...this.state.workouts, parsedResponse]})
 
     } catch(err) {
         console.log(err)
@@ -257,14 +265,14 @@ class App extends Component {
             method: 'DELETE',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept':'application/json'
             }
         });
 
-        const parsedResponse = await deleteWorkout.json();
-        if(parsedResponse.status === 200){
+        if(deleteWorkout.status === 200){
             this.setState({
-                workouts: this.state.workouts.filter(workout => workout._id !== deletedWorkoutID)
+                workouts: this.state.workouts.filter(workout => workout.id !== deletedWorkoutID)
             })
         }
 
@@ -278,7 +286,7 @@ class App extends Component {
   editWorkout = async (e) => {
     e.preventDefault();
     try {
-        const updateWorkout = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/workouts/` + this.state.workoutToEdit._id, {
+        const updateWorkout = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/workouts/` + this.state.workoutToEdit.id, {
             method: 'PUT',
             credentials: 'include',
             body: JSON.stringify(this.state.workoutToEdit),
@@ -289,8 +297,8 @@ class App extends Component {
 
         const parsedResponse = await updateWorkout.json();
         const editedWorkoutArr = this.state.workouts.map((workout) => {
-            if(workout._id === this.state.workoutToEdit._id){
-                workout = parsedResponse.data
+            if(workout.id === this.state.workoutToEdit.id){
+                workout = parsedResponse
             }
             return workout
         });

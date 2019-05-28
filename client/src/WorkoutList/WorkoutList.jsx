@@ -16,7 +16,7 @@ const WorkoutList = (props) => {
 
     const workouts = props.workouts.map((workout, index)=> {
         return(
-            <div className="workout-div flex-container" key={workout._id}>
+            <div className="workout-div flex-container" key={workout.id}>
                     <div>
                         <h2>{workout.name}</h2>
                     </div>
@@ -35,7 +35,7 @@ const WorkoutList = (props) => {
                     
                     {props.isLogged ? <EditWorkout workout={workout} modalShows={props.modalShows} editWorkout={props.editWorkout} handleFormChange={props.handleFormChange}></EditWorkout> : null} 
                     {props.isLogged ? <button className="delete" onClick={() =>{
-                        props.deleteWorkout(workout._id)
+                        props.deleteWorkout(workout.id)
                     }}>Delete</button> : null}      
             </div>
         )
